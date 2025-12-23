@@ -1,5 +1,59 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface ContactContactBanner extends Struct.ComponentSchema {
+  collectionName: 'components_contact_contact_banners';
+  info: {
+    displayName: 'Contact Banner';
+  };
+  attributes: {
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    subtitle: Schema.Attribute.String;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface ContactContactForm extends Struct.ComponentSchema {
+  collectionName: 'components_contact_contact_forms';
+  info: {
+    displayName: 'Contact Form';
+  };
+  attributes: {
+    service: Schema.Attribute.Component<'contact.service', true>;
+  };
+}
+
+export interface ContactContactInfo extends Struct.ComponentSchema {
+  collectionName: 'components_contact_contact_infos';
+  info: {
+    displayName: 'ContactInfo';
+  };
+  attributes: {
+    social: Schema.Attribute.Component<'contact.social', true>;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface ContactService extends Struct.ComponentSchema {
+  collectionName: 'components_contact_services';
+  info: {
+    displayName: 'Service';
+  };
+  attributes: {
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface ContactSocial extends Struct.ComponentSchema {
+  collectionName: 'components_contact_socials';
+  info: {
+    displayName: 'Social';
+  };
+  attributes: {
+    description: Schema.Attribute.String;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface HomeHomeBanner extends Struct.ComponentSchema {
   collectionName: 'components_home_home_banners';
   info: {
@@ -371,6 +425,11 @@ export interface SharedTestimonialItem extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'contact.contact-banner': ContactContactBanner;
+      'contact.contact-form': ContactContactForm;
+      'contact.contact-info': ContactContactInfo;
+      'contact.service': ContactService;
+      'contact.social': ContactSocial;
       'home.home-banner': HomeHomeBanner;
       'home.home-equipment': HomeHomeEquipment;
       'home.home-experience': HomeHomeExperience;
